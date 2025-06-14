@@ -7,7 +7,6 @@ import {
   Paper,
   useTheme,
   useMediaQuery,
-  Avatar,
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkIcon from '@mui/icons-material/Work';
@@ -22,10 +21,15 @@ const About = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: `
-          linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
-          linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)
-        `,
+        background: theme.palette.mode === 'dark'
+          ? `
+            linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
+            linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)
+          `
+          : `
+            linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
+            linear-gradient(45deg, #f5f5f5 0%, #e0e0e0 100%)
+          `,
         position: 'relative',
         '&::before': {
           content: '""',
@@ -34,10 +38,15 @@ const About = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: `
-            radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.05) 0%, transparent 50%)
-          `,
+          background: theme.palette.mode === 'dark'
+            ? `
+              radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.05) 0%, transparent 50%)
+            `
+            : `
+              radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.1) 0%, transparent 50%)
+            `,
           zIndex: 0,
         },
         '&::after': {
@@ -47,10 +56,15 @@ const About = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: `
-            linear-gradient(45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%)
-          `,
+          background: theme.palette.mode === 'dark'
+            ? `
+              linear-gradient(45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%),
+              linear-gradient(-45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%)
+            `
+            : `
+              linear-gradient(45deg, transparent 48%, rgba(25, 118, 210, 0.05) 49%, rgba(25, 118, 210, 0.05) 51%, transparent 52%),
+              linear-gradient(-45deg, transparent 48%, rgba(25, 118, 210, 0.05) 49%, rgba(25, 118, 210, 0.05) 51%, transparent 52%)
+            `,
           backgroundSize: '30px 30px',
           zIndex: 0,
         },
@@ -99,12 +113,17 @@ const About = () => {
               elevation={0}
               sx={{
                 p: 3,
-                background: `
-                  linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
-                  linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
-                `,
+                background: theme.palette.mode === 'dark'
+                  ? `
+                    linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `
+                  : `
+                    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `,
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                 borderRadius: 2,
                 opacity: 0,
                 animation: 'fadeInUp 0.5s ease-out 0.1s forwards',
@@ -127,7 +146,7 @@ const About = () => {
                   mb: 3,
                 }}
               >
-                <CodeIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
+                <CodeIcon sx={{ fontSize: 40, color: theme.palette.primary.main, mr: 2 }} />
                 <Typography
                   variant="h5"
                   component="h2"
@@ -144,9 +163,8 @@ const About = () => {
               </Box>
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: theme.palette.text.secondary,
                   lineHeight: 1.6,
                 }}
               >
@@ -161,12 +179,17 @@ const About = () => {
               sx={{
                 p: 3,
                 height: '100%',
-                background: `
-                  linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
-                  linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
-                `,
+                background: theme.palette.mode === 'dark'
+                  ? `
+                    linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `
+                  : `
+                    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `,
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                 borderRadius: 2,
                 opacity: 0,
                 animation: 'fadeInUp 0.5s ease-out 0.2s forwards',
@@ -189,7 +212,7 @@ const About = () => {
                   mb: 3,
                 }}
               >
-                <SchoolIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
+                <SchoolIcon sx={{ fontSize: 40, color: theme.palette.primary.main, mr: 2 }} />
                 <Typography
                   variant="h5"
                   component="h2"
@@ -206,9 +229,8 @@ const About = () => {
               </Box>
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: theme.palette.text.secondary,
                   lineHeight: 1.6,
                 }}
               >
@@ -225,12 +247,17 @@ const About = () => {
               sx={{
                 p: 3,
                 height: '100%',
-                background: `
-                  linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
-                  linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
-                `,
+                background: theme.palette.mode === 'dark'
+                  ? `
+                    linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `
+                  : `
+                    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `,
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                 borderRadius: 2,
                 opacity: 0,
                 animation: 'fadeInUp 0.5s ease-out 0.3s forwards',
@@ -253,7 +280,7 @@ const About = () => {
                   mb: 3,
                 }}
               >
-                <SchoolIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
+                <SchoolIcon sx={{ fontSize: 40, color: theme.palette.primary.main, mr: 2 }} />
                 <Typography
                   variant="h5"
                   component="h2"
@@ -270,9 +297,8 @@ const About = () => {
               </Box>
               <Typography
                 variant="body1"
-                color="text.secondary"
                 sx={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: theme.palette.text.secondary,
                   lineHeight: 1.6,
                 }}
               >

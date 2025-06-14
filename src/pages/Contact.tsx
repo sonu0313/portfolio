@@ -7,51 +7,52 @@ import {
   Paper,
   useTheme,
   useMediaQuery,
+  IconButton,
 } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Contact = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        background: `
-          linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
-          linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)
+  const getBackgroundStyle = () => ({
+    minHeight: '100vh',
+    background: theme.palette.mode === 'dark'
+      ? `
+        linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
+        linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)
+      `
+      : `
+        linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
+        linear-gradient(45deg, #f5f5f5 0%, #e0e0e0 100%)
+      `,
+    position: 'relative',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: theme.palette.mode === 'dark'
+        ? `
+          radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.05) 0%, transparent 50%)
+        `
+        : `
+          radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.1) 0%, transparent 50%)
         `,
-        position: 'relative',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `
-            radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.05) 0%, transparent 50%)
-          `,
-          zIndex: 0,
-        },
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `
-            linear-gradient(45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%)
-          `,
-          backgroundSize: '30px 30px',
-          zIndex: 0,
-        },
-      }}
-    >
+      zIndex: 0,
+    },
+  });
+
+  return (
+    <Box sx={getBackgroundStyle()}>
       <Container maxWidth="lg" sx={{ py: 8, position: 'relative', zIndex: 1 }}>
         <Box
           sx={{
@@ -84,87 +85,27 @@ const Contact = () => {
               fontWeight: 700,
             }}
           >
-            Contact Information
+            Contact Me
           </Typography>
         </Box>
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={8}>
             <Paper
               elevation={0}
               sx={{
-                p: 3,
-                height: '100%',
-                background: `
-                  linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
-                  linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
-                `,
+                p: 4,
+                background: theme.palette.mode === 'dark'
+                  ? `
+                    linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `
+                  : `
+                    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `,
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                borderRadius: 2,
-                opacity: 0,
-                animation: 'fadeInUp 0.5s ease-out 0.1s forwards',
-                '@keyframes fadeInUp': {
-                  '0%': {
-                    opacity: 0,
-                    transform: 'translateY(20px)',
-                  },
-                  '100%': {
-                    opacity: 1,
-                    transform: 'translateY(0)',
-                  },
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  mb: 3,
-                }}
-              >
-                <PersonIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
-                <Typography
-                  variant="h5"
-                  component="h2"
-                  sx={{
-                    background: 'linear-gradient(45deg, #1976d2, #64b5f6)',
-                    backgroundClip: 'text',
-                    textFillColor: 'transparent',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
-                  Contact
-                </Typography>
-              </Box>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{
-                  color: 'rgba(255,255,255,0.9)',
-                  lineHeight: 1.6,
-                }}
-              >
-                Email: bhagyashreebiradar669@gmail.com<br/>
-                LinkedIn: <a href='https://www.linkedin.com/in/bhagyashree-biradar-4aa4252a7' style={{color:'#64b5f6'}}>bhagyashree-biradar-45a4215a7</a><br/>
-                Contact Number: +91 7899545947
-              </Typography>
-            </Paper>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 3,
-                height: '100%',
-                background: `
-                  linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
-                  linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
-                `,
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                 borderRadius: 2,
                 opacity: 0,
                 animation: 'fadeInUp 0.5s ease-out 0.2s forwards',
@@ -180,41 +121,51 @@ const Contact = () => {
                 },
               }}
             >
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  mb: 3,
-                }}
-              >
-                <PersonIcon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
-                <Typography
-                  variant="h5"
-                  component="h2"
+              <Typography variant="h5" gutterBottom sx={{ mb: 4 }}>
+                Get in Touch
+              </Typography>
+              <Box sx={{ mb: 4 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <EmailIcon sx={{ mr: 2, color: theme.palette.primary.main }} />
+                  <Typography>Email: bhagyashribiradar669@gmail.com</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <PhoneIcon sx={{ mr: 2, color: theme.palette.primary.main }} />
+                  <Typography>Phone: +91 7899545947</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <LocationOnIcon sx={{ mr: 2, color: theme.palette.primary.main }} />
+                  <Typography>Location: Bengaluru, India</Typography>
+                </Box>
+              </Box>
+              <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
+                <IconButton
+                  href="www.linkedin.com/in/bhagyashree-biradar-4aa4252a7"
+                  target="_blank"
                   sx={{
-                    background: 'linear-gradient(45deg, #1976d2, #64b5f6)',
-                    backgroundClip: 'text',
-                    textFillColor: 'transparent',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: theme.palette.primary.main,
+                    '&:hover': {
+                      transform: 'translateY(-3px)',
+                      transition: 'transform 0.3s ease-in-out',
+                    },
                   }}
                 >
-                  Personal Information
-                </Typography>
+                  <LinkedInIcon />
+                </IconButton>
+                <IconButton
+                  href="https://github.com/sonu0313"
+                  target="_blank"
+                  sx={{
+                    color: theme.palette.primary.main,
+                    '&:hover': {
+                      transform: 'translateY(-3px)',
+                      transition: 'transform 0.3s ease-in-out',
+                    },
+                  }}
+                >
+                  <GitHubIcon />
+                </IconButton>
               </Box>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{
-                  color: 'rgba(255,255,255,0.9)',
-                  lineHeight: 1.6,
-                }}
-              >
-                Name: Bhagayashee B Biradar<br/>
-                Permanent Address:Kirti nagar, Vijayapur (Bijapur), Karnataka 586101<br/>
-                Current Address:Chandapura, Bengaluru, Karnataka 560098
-                Contact Number: +91 7899545947
-              </Typography>
             </Paper>
           </Grid>
         </Grid>

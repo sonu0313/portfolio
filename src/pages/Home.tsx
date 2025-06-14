@@ -11,6 +11,7 @@ import {
 import CloudIcon from '@mui/icons-material/Cloud';
 import BuildIcon from '@mui/icons-material/Build';
 import CodeIcon from '@mui/icons-material/Code';
+import Avatar from '@mui/material/Avatar';
 
 const features = [
   {
@@ -38,10 +39,15 @@ const Home = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: `
-          linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
-          linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)
-        `,
+        background: theme.palette.mode === 'dark'
+          ? `
+            linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
+            linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%)
+          `
+          : `
+            linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(25, 118, 210, 0.1) 100%),
+            linear-gradient(45deg, #f5f5f5 0%, #e0e0e0 100%)
+          `,
         position: 'relative',
         '&::before': {
           content: '""',
@@ -50,10 +56,15 @@ const Home = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: `
-            radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.05) 0%, transparent 50%)
-          `,
+          background: theme.palette.mode === 'dark'
+            ? `
+              radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.05) 0%, transparent 50%)
+            `
+            : `
+              radial-gradient(circle at 20% 20%, rgba(25, 118, 210, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(25, 118, 210, 0.1) 0%, transparent 50%)
+            `,
           zIndex: 0,
         },
         '&::after': {
@@ -63,16 +74,74 @@ const Home = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: `
-            linear-gradient(45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%)
-          `,
+          background: theme.palette.mode === 'dark'
+            ? `
+              linear-gradient(45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%),
+              linear-gradient(-45deg, transparent 48%, rgba(25, 118, 210, 0.03) 49%, rgba(25, 118, 210, 0.03) 51%, transparent 52%)
+            `
+            : `
+              linear-gradient(45deg, transparent 48%, rgba(25, 118, 210, 0.05) 49%, rgba(25, 118, 210, 0.05) 51%, transparent 52%),
+              linear-gradient(-45deg, transparent 48%, rgba(25, 118, 210, 0.05) 49%, rgba(25, 118, 210, 0.05) 51%, transparent 52%)
+            `,
           backgroundSize: '30px 30px',
           zIndex: 0,
         },
       }}
     >
       <Container maxWidth="lg" sx={{ py: 8, position: 'relative', zIndex: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            mb: 4,
+            mt: { xs: 2, md: 0 },
+          }}
+        >
+          <Box
+            sx={{
+              position: 'relative',
+              width: { xs: 160, md: 200 },
+              height: { xs: 160, md: 200 },
+              mb: 2,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              mx: 'auto',
+            }}
+          >
+            {/* Blurred background ring */}
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                width: { xs: 180, md: 230 },
+                height: { xs: 180, md: 230 },
+                transform: 'translate(-50%, -50%)',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg,rgb(11, 139, 194) 0%, #e3f2fd 100%)',
+                filter: 'blur(10px)',
+                opacity: 0.28,
+                zIndex: 0,
+              }}
+            />
+            <Avatar
+              src="/profile.jpg"
+              alt="Profile Picture"
+              sx={{
+                width: { xs: 160, md: 200 },
+                height: { xs: 160, md: 200 },
+                border: `4px solid ${theme.palette.background.paper}`,
+                boxShadow: '0 2px 8px 0 rgba(25, 118, 210, 0.10)',
+                zIndex: 1,
+                position: 'relative',
+              }}
+            />
+          </Box>
+        </Box>
+
         {/* Hero Section */}
         <Box
           sx={{
@@ -115,7 +184,7 @@ const Home = () => {
             variant="h5"
             component="h2"
             sx={{
-              color: '#90caf9',
+              color: theme.palette.primary.main,
               fontWeight: 500,
               fontFamily: 'Montserrat, sans-serif',
               mb: 2,
@@ -127,8 +196,8 @@ const Home = () => {
           <Typography
             variant="subtitle1"
             sx={{
-              color: 'rgba(255,255,255,0.85)',
-              fontStyle: 'italic',
+              color: theme.palette.text.secondary,
+              fontStyle: 'normal',
               mb: 4,
               fontFamily: 'Montserrat, sans-serif',
               fontSize: isMobile ? '1.1rem' : '1.25rem',
@@ -149,12 +218,17 @@ const Home = () => {
                 sx={{
                   p: 3,
                   height: '100%',
-                  background: `
-                    linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
-                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
-                  `,
+                  background: theme.palette.mode === 'dark'
+                    ? `
+                      linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                      linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                    `
+                    : `
+                      linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%),
+                      linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                    `,
                   backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                   borderRadius: 2,
                   opacity: 0,
                   animation: `fadeInUp 0.5s ease-out ${index * 0.1}s forwards`,
@@ -170,7 +244,9 @@ const Home = () => {
                   },
                   '&:hover': {
                     transform: 'translateY(-8px)',
-                    boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+                    boxShadow: theme.palette.mode === 'dark'
+                      ? '0 8px 32px rgba(0,0,0,0.2)'
+                      : '0 8px 32px rgba(0,0,0,0.1)',
                     '& .feature-icon': {
                       transform: 'scale(1.1)',
                       color: theme.palette.primary.main,
@@ -184,7 +260,7 @@ const Home = () => {
                     display: 'flex',
                     alignItems: 'center',
                     mb: 3,
-                    color: 'primary.main',
+                    color: theme.palette.primary.main,
                     transition: 'all 0.3s ease-in-out',
                   }}
                 >
@@ -206,9 +282,8 @@ const Home = () => {
                 </Box>
                 <Typography
                   variant="body1"
-                  color="text.secondary"
                   sx={{
-                    color: 'rgba(255,255,255,0.9)',
+                    color: theme.palette.text.secondary,
                     lineHeight: 1.6,
                   }}
                 >
