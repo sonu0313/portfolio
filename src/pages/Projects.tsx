@@ -8,6 +8,7 @@ import {
   useTheme,
   useMediaQuery,
   Chip,
+  Button,
 } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -141,14 +142,21 @@ const Projects = () => {
               elevation={0}
               sx={{
                 p: 3,
+                height: '100%',
                 background: theme.palette.mode === 'dark'
-                  ? 'linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%)'
-                  : 'linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%)',
+                  ? `
+                    linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `
+                  : `
+                    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `,
                 backdropFilter: 'blur(10px)',
                 border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                 borderRadius: 2,
                 opacity: 0,
-                animation: 'fadeInUp 0.5s ease-out 0.1s forwards',
+                animation: 'fadeInUp 0.5s ease-out 0.4s forwards',
                 '@keyframes fadeInUp': {
                   '0%': {
                     opacity: 0,
@@ -180,76 +188,180 @@ const Projects = () => {
                     WebkitTextFillColor: 'transparent',
                   }}
                 >
-                  Projects
+                  Amazon Clone
                 </Typography>
               </Box>
-              <Grid container spacing={3}>
-                {projects.map((project, index) => (
-                  <Grid item xs={12} md={4} key={index}>
-                    <Paper
-                      elevation={0}
-                      sx={{
-                        p: 3,
-                        height: '100%',
-                        background: theme.palette.mode === 'dark'
-                          ? 'linear-gradient(145deg, rgba(40, 40, 40, 0.9) 0%, rgba(55, 55, 55, 0.9) 100%)'
-                          : 'linear-gradient(145deg, rgba(250, 250, 250, 0.9) 0%, rgba(240, 240, 240, 0.9) 100%)',
-                        border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-                        borderRadius: 2,
-                        transition: 'transform 0.2s ease-in-out',
-                        '&:hover': {
-                          transform: 'translateY(-5px)',
-                        },
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: theme.palette.primary.main,
-                          mb: 2,
-                        }}
-                      >
-                        {project.title}
+              <Typography
+                variant="body1"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  lineHeight: 1.6,
+                }}
+              >
+                A full-featured e-commerce platform inspired by Amazon, built with modern web technologies.
+              </Typography>
+              <Box sx={{ mt: 2 }}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  href="http://myamazoneclone.s3-website-us-east-1.amazonaws.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ mr: 2 }}
+                >
+                  Live Demo
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  href="https://github.com/sonu0313/AmazonClone"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </Button>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 3,
+                height: '100%',
+                background: theme.palette.mode === 'dark'
+                  ? `
+                    linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `
+                  : `
+                    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.9) 100%),
+                    linear-gradient(45deg, rgba(25, 118, 210, 0.05) 0%, transparent 100%)
+                  `,
+                backdropFilter: 'blur(10px)',
+                border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                borderRadius: 2,
+                opacity: 0,
+                animation: 'fadeInUp 0.5s ease-out 0.4s forwards',
+                '@keyframes fadeInUp': {
+                  '0%': {
+                    opacity: 0,
+                    transform: 'translateY(20px)',
+                  },
+                  '100%': {
+                    opacity: 1,
+                    transform: 'translateY(0)',
+                  },
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  mb: 3,
+                }}
+              >
+                <CodeIcon sx={{ fontSize: 40, color: theme.palette.primary.main, mr: 2 }} />
+                <Typography
+                  variant="h5"
+                  component="h2"
+                  sx={{
+                    background: 'linear-gradient(45deg, #1976d2, #64b5f6)',
+                    backgroundClip: 'text',
+                    textFillColor: 'transparent',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  Personal Portfolio Website
+                </Typography>
+              </Box>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  lineHeight: 1.6,
+                }}
+              >
+                A modern portfolio website showcasing cloud and DevOps expertise, built with React and Material-UI.
+              </Typography>
+              <Box sx={{ mt: 2 }}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  href="https://github.com/sonu0313/portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </Button>
+              </Box>
+            </Paper>
+          </Grid>
+          {projects.map((project, index) => (
+            <Grid item xs={12} key={index}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 3,
+                  height: '100%',
+                  background: theme.palette.mode === 'dark'
+                    ? 'linear-gradient(145deg, rgba(40, 40, 40, 0.9) 0%, rgba(55, 55, 55, 0.9) 100%)'
+                    : 'linear-gradient(145deg, rgba(250, 250, 250, 0.9) 0%, rgba(240, 240, 240, 0.9) 100%)',
+                  border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                  borderRadius: 2,
+                  transition: 'transform 0.2s ease-in-out',
+                  '&:hover': {
+                    transform: 'translateY(-5px)',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: theme.palette.primary.main,
+                    mb: 2,
+                  }}
+                >
+                  {project.title}
                 </Typography>
                 <Typography
                   variant="body1"
-                        sx={{
-                          color: theme.palette.text.primary,
-                          mb: 2,
-                        }}
+                  sx={{
+                    color: theme.palette.text.primary,
+                    mb: 2,
+                  }}
                 >
                   {project.description}
                 </Typography>
                 <Box sx={{ mb: 2 }}>
-                        {project.technologies.map((tech, techIndex) => (
+                  {project.technologies.map((tech, techIndex) => (
                     <Chip
-                            key={techIndex}
+                      key={techIndex}
                       label={tech}
                       size="small"
-                            sx={{
-                              mr: 1,
-                              mb: 1,
-                              backgroundColor: theme.palette.mode === 'dark'
-                                ? 'rgba(255, 255, 255, 0.1)'
-                                : 'rgba(0, 0, 0, 0.05)',
-                              color: theme.palette.text.primary,
-                              '&:hover': {
-                                backgroundColor: theme.palette.mode === 'dark'
-                                  ? 'rgba(255, 255, 255, 0.2)'
-                                  : 'rgba(0, 0, 0, 0.1)',
-                              },
-                            }}
+                      sx={{
+                        mr: 1,
+                        mb: 1,
+                        backgroundColor: theme.palette.mode === 'dark'
+                          ? 'rgba(255, 255, 255, 0.1)'
+                          : 'rgba(0, 0, 0, 0.05)',
+                        color: theme.palette.text.primary,
+                        '&:hover': {
+                          backgroundColor: theme.palette.mode === 'dark'
+                            ? 'rgba(255, 255, 255, 0.2)'
+                            : 'rgba(0, 0, 0, 0.1)',
+                        },
+                      }}
                     />
                   ))}
                 </Box>
-                    </Paper>
-          </Grid>
-        ))}
-              </Grid>
-            </Paper>
-          </Grid>
-      </Grid>
-    </Container>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </Box>
   );
 };
